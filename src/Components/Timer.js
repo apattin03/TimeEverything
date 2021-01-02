@@ -1,37 +1,38 @@
-import { CountdownCircleTimer } from 'react-countdown-circle-timer'
-import "../timer.css"
+import React from 'react';
+import { useTimer } from 'react-timer-hook';
 
-
-const renderTime = ({ remainingTime }) => {
-  if (remainingTime === 0) {
-    return <div className="timer">Too lale...</div>;
-  }
+const Timer = ({ expiryTimestamp }) => {
+  const {
+    seconds,
+    minutes,
+    hours,
+    days,
+    isRunning,
+    start,
+    pause,
+    resume,
+    restart,
+  } = useTimer({ expiryTimestamp, onExpire: () => console.warn('onExpire called'), isRunning: false});
 
   return (
-    <div className="timer">
-      <div className="text">Remaining</div>
-      <div className="value">{remainingTime}</div>
-      <div className="text">seconds</div>
-    </div>
-  );
-};
-
-const Timer = (props) => {
-  return (
-    <div>
-      <div className="timer-wrapper">
-        <CountdownCircleTimer
-          isPlaying
-          duration={10}
-          colors={[["#004777", 0.33], ["#F7B801", 0.33], ["#A30000"]]}
-          onComplete={() => [true, 1000]}
-        >
-          {renderTime}
-        </CountdownCircleTimer>
+    <div style={{textAlign: 'center'}}>
+      <div style={{fontSize: '30px'}}>
+        <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
       </div>
+
+      <p>{isRunning ? 'Running' : 'Not running'}</p>
+      <button onClick={start}>Start</button>
+      <button onClick={pause}>Pause</button>
+      <button onClick={resume}>Resume</button>
+      <button onClick={() => {
+        // Restarts to 5 minutes timer
+        const time = new Date();
+        time.setMinutes(time.getMinutes() + expiryTimestamp);
+        restart(time)
+      }}>Restart</button>
     </div>
   );
 }
 
 
-  export default Timer;
+export default Timer;

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 const AddTimerForm = (props) => {
-  const initialFormState = { id: null, name: "", time: "" };
+  const initialFormState = { id: null, name: "", duration: "" };
   const [timer, setTimer] = useState(initialFormState);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-
+    console.log(event);
     setTimer({ ...timer, [name]: value });
   };
 
@@ -14,9 +14,9 @@ const AddTimerForm = (props) => {
     <form
       onSubmit={(event) => {
         event.preventDefault();
-        if (!timer.name || !timer.username) return;
+        if (!timer.name || !timer.duration) return;
 
-        props.addUser(timer);
+        props.addTimer(timer);
         setTimer(initialFormState);
       }}
     >
@@ -30,8 +30,8 @@ const AddTimerForm = (props) => {
       <label>How long do you wanna time it for?</label>
       <input
         type="text"
-        name="time"
-        value={timer.time}
+        name="duration"
+        value={timer.duration}
         onChange={handleInputChange}
       />
       <button>Add Timer!!</button>

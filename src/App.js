@@ -4,35 +4,26 @@ import AddTimerForm from './Components/AddTimerForm';
 
 const App = () => {
   const timerData = [
-    { id: 1, name: 'Earl-Grey', time: 5 },
-    { id: 2, name: 'Green Tea', time: 4 },
-    { id: 3, name: 'Ribeye Steak-270 Temp', time: 20 },
-
-
-    //this should be where I put my GetALL() request
+    { id: 1, name: 'Earl-Grey', duration: 5 },
+    { id: 2, name: 'French Press', duration: 4 },
+    { id: 3, name: 'Ribeye Steak-270 Temp', duration: 20 },
   ]
-
   const [timers, setTimers] = useState(timerData)
-
   const addTimer = (timer) => {
-    //make api request here. Axios???
+    timer.id = timers.length + 1
+    setTimers([...timers, timer])
   }
 
   const deleteTimer = (id) => {
-    // setUsers(users.filter((user) => user.id !== id))
+    setTimers(timers.filter((user) => user.id !== id))
   }
-
-  const showTimer = (id) => {
-    
-  }
-
+  
   return (
     <div className="container">
       <h1>Time Your Shit</h1>
       <div className="flex-row">
         <div className="flex-large">
-          <h2>Add Timer</h2>
-         < AddTimerForm/>
+         < AddTimerForm addTimer={addTimer}/>
         </div>
         <div className="flex-large">
           <TimerTable timers={timers} deleteTimer={deleteTimer}/>

@@ -1,27 +1,29 @@
 import React from "react";
-import Card from "./Card";
+import TimeCard from "./TimeCard";
 
-const TimerTable = (props) => (
+const TimerTable = (props) => {
+console.log(props);
+  return(
   <table>
     <thead>
       <tr>
         <th>Your Timers</th>
+        <th></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
       {props.timers.length > 0 ? (
         props.timers.map((timer) => (
           <tr key={timer.id}>
-            {/* <td>{timer.name}</td> */}
+            <td>{timer.name}</td>
+            <td><button  onClick={() => props.deleteTimer(timer.id)}
+                className="button muted-button">Delete</button></td>
             <td>
-              <Card/>
-              {/* <button
-                onClick={() => props.deleteUser(timer.id)}
-                className="button muted-button"
-              > */}
-                {/* Delete
-              </button> */}
+             <TimeCard duration = {timer.duration}/>
+             {console.log(timer)}
             </td>
+      
           </tr>
         ))
       ) : (
@@ -31,6 +33,6 @@ const TimerTable = (props) => (
       )}
     </tbody>
   </table>
-);
+  )};
 
 export default TimerTable;
