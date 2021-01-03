@@ -10,14 +10,14 @@ const TimeCard = (props) => {
   }
 
   const time = new Date();
-  time.setMinutes(time.getMinutes() + props.duration)
+  time.setMinutes(props.duration)
   return (
     <div>
-      <Button color="primary" onClick={toggle} style={{ marginBottom: '1rem' }}>Start Timer!</Button>
+      <Button color="primary" onClick={toggle} style={{ marginBottom: '1rem' }}>Start</Button>
       <Collapse isOpen={isOpen}>
         <Card>
           <CardBody>        
-          <CardTitle><Timer  expiryTimestamp={time} /></CardTitle>
+          <CardTitle><Timer duration = {props.duration} /></CardTitle>
           </CardBody>
         </Card>
       </Collapse>

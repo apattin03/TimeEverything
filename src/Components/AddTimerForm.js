@@ -20,14 +20,14 @@ const AddTimerForm = (props) => {
         setTimer(initialFormState);
       }}
     >
-      <label>What do you wanna time?</label>
+      <label>What are you looking to time?</label>
       <input
         type="text"
         name="name"
         value={timer.name}
         onChange={handleInputChange}
       />
-      <label>How long do you wanna time it for?</label>
+      <label>How many minutes do you wanna time it for?</label>
       <input
         type="text"
         name="duration"

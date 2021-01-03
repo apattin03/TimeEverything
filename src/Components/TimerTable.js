@@ -1,8 +1,9 @@
 import React from "react";
-import TimeCard from "./TimeCard";
+import Timer from "./Timer";
 
 const TimerTable = (props) => {
-console.log(props);
+const time = new Date();
+time.setSeconds(time.getSeconds() + props.duration)
   return(
   <table>
     <thead>
@@ -20,7 +21,7 @@ console.log(props);
             <td><button  onClick={() => props.deleteTimer(timer.id)}
                 className="button muted-button">Delete</button></td>
             <td>
-             <TimeCard duration = {timer.duration}/>
+             <Timer expiryTimestamp={time} duration = {timer.duration}/>
              {console.log(timer)}
             </td>
       
