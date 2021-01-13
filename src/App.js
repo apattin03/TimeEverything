@@ -16,7 +16,6 @@ const App = () => {
 
   return (
     <div className="container">
-      <h1>Time All The Things!</h1>
       <div className="flex-row">
         <div className="flex-large">
           <AddTimerForm addTimer={addTimer} />
